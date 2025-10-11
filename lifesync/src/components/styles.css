@@ -2920,14 +2920,14 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: visible; /* ✅ Prevents content from disappearing */
+    overflow: visible; /* Prevents content from disappearing */
   }
 
-  /* ✅ Main container with consistent padding */
+  /* Main container with consistent padding */
   .services-container {
     width: 100%;
     max-width: 400px;
-    padding: 0 5px;
+    padding: 0 15px; /* Added some side spacing */
     margin: 0 auto;
     box-sizing: border-box;
   }
@@ -2940,44 +2940,42 @@ body {
     padding: 0 5px;
   }
 
-  /* ✅ Subtitle stays fixed with 35px space on both sides */
+  /* Subtitle stays fixed with 35px space on both sides */
   .services-section .section-subtitle {
     font-size: 1.1rem;
-    text-align: justify;
+    text-align: center; /* Centered instead of justify */
     line-height: 1.9;
     margin-bottom: 25px;
-    padding: 0 35px;
+    padding: 0 25px; /* Slightly away from edges */
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
   }
 
-  /* ✅ Cards: consistent border spacing + flexible + taller height */
-  .services-row {
+  /* Cards container */
+  .services-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 22px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 0 35px; /* ✅ Match subtitle spacing */
-    box-sizing: border-box;
+    gap: 20px;
   }
 
   .service-card {
-    width: 100%;
+    width: 90%; /* Slightly smaller than full width */
     background: transparent;
-    padding: 20px 15px; /* ✅ Increased padding */
-    min-height: 180px; /* ✅ Ensures cards don’t disappear */
+    padding: 15px 12px; /* Reduced padding for smaller size */
+    min-height: 150px; /* Slightly smaller height */
     box-sizing: border-box;
-    text-align: center;
+    text-align: center; /* Center content */
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .service-content h3 {
-    font-size: 1.45rem;
-    margin-bottom: 10px;
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+    text-align: center; /* Center heading */
     word-wrap: break-word;
   }
 
@@ -2985,7 +2983,7 @@ body {
     font-size: 1.05rem;
     line-height: 1.85;
     color: #666;
-    text-align: justify;
+    text-align: center; /* Center text */
     width: 100%;
     margin: 0 auto;
     word-wrap: break-word;

@@ -18,7 +18,7 @@ const Services = () => {
   useEffect(() => {
     const servicesSection = document.querySelector('.services-section');
     const observer = new IntersectionObserver(handleVisibilityChange, {
-      threshold: 0.3 // Trigger when 30% of the section is visible
+      threshold: 0.15 // Trigger when 30% of the section is visible
     });
 
     if (servicesSection) {
