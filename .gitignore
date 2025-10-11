@@ -1,0 +1,77 @@
+# ========================
+# Node.js dependencies
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# ========================
+# Build / Dist outputs
+# ========================
+dist/
+build/
+.cache/
+.next/
+out/
+coverage/
+
+# ========================
+# Environment & Config files
+# ========================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+.log.
+logfile.log
+
+# ========================
+# IDE / Editor settings
+# ========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ========================
+# OS generated files
+# ========================
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# ========================
+# Uploads or Temporary Files
+# ========================
+uploads/
+tmp/
+public/uploads/
+*.zip
+*.tar
+*.rar
+
+# ========================
+# XAMPP / PHP Related (if backend uses PHP)
+# ========================
+vendor/
+*.sql
+*.sqlite
+*.db
+
+# ========================
+# Misc
+# ========================
+*.iml
+*.sublime-project
+*.sublime-workspace
