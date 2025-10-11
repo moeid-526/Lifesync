@@ -13,6 +13,7 @@ import relaxationImg from "../assets/relaxation.png";
 import chatbotImg from "../assets/chatbot.png";
 import journalImg from "../assets/journal-keeping.png";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import {
   PieChart,
   Pie,
@@ -32,6 +33,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { useActiveTimeTracker } from '../components/useActiveTimeTracker';
 
 const Dashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const [profilePicture, setProfilePicture] = useState('');
   const [quote, setQuote] = useState("");
@@ -47,7 +49,12 @@ const Dashboard = () => {
     moodData: [],
   });
 
-  
+  // Add sidebar toggle function
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+
   const [emailNotificationsEnabled, setEmailNotificationsEnabled] = useState(false);
 
   const handleEmailToggle = async () => {
@@ -83,7 +90,7 @@ const Dashboard = () => {
     }
   };
 
-  
+
 
   // Add this useEffect to listen for the custom event
   useEffect(() => {
@@ -98,7 +105,7 @@ const Dashboard = () => {
     };
   }, []);
 
-  
+
 
   // Add this useEffect hook to the Dashboard component
   useEffect(() => {
@@ -296,17 +303,27 @@ const Dashboard = () => {
     return <Outlet />;
   }
 
-  
+
 
   return (
     <>
       <div className="dashboard-layout">
+        {/* Add Sidebar Toggle Button */}
+        <div
+          className={`sidebar-toggle ${sidebarOpen ? 'open' : 'closed'}`}
+          onClick={toggleSidebar}
+        >
+          {sidebarOpen ? <FaAngleLeft size={20} /> : <FaAngleRight size={20} />}
+        </div>
         {showSidebar && (
           <motion.div
-            className="sidebar"
+            className={`sidebar ${sidebarOpen ? 'active' : ''}`}
             initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            animate={{
+              opacity: 1,
+              x: 0
+            }}
+            transition={{ duration: 0.3 }}
           >
             <div className="sidebar-header">
               <h2>Dashboard</h2>
@@ -483,7 +500,7 @@ const Dashboard = () => {
                         />
                       </BarChart>
                     </div>
-                    <p className="card-footer">
+                    <p className="bar-card-footer">
                       {metrics.chatbotInteractions} total interactions
                     </p>
                   </div>
@@ -521,7 +538,7 @@ const Dashboard = () => {
 
 
                     </div>
-                    <p className="card-footer">
+                    <p className="scatter-card-footer">
                       Each point shows minutes spent on the platform
                     </p>
                   </div>
