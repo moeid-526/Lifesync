@@ -4184,6 +4184,902 @@ input:checked + .slider:before {
     transform: scale(1);
   }
 }
+
+
+
+/* ========== 768px Mobile ========== */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 1;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%) !important;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    width: 280px;
+    padding-top: 80px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
+    background: #a90707;
+    border: 1px solid #a90707;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .sidebar-toggle.open {
+    background-color: #fff;
+    color: #a90707;
+    left: 260px;
+  }
+
+  .sidebar-header {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 25px;
+    display: block;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-item {
+    padding: 15px 18px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+  }
+
+  .nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 30px 25px 100px 25px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 0;
+  }
+
+  .mood-tracker-section .mn-head,
+  .healthy-lifestyle-section .mn-head,
+  .wellness-section .mn-head {
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 0 0 15px 0;
+  }
+
+  .mood-tracker-section .mn-high,
+  .healthy-lifestyle-section .mn-high,
+  .wellness-section .mn-high {
+    font-size: 2.8rem;
+  }
+
+  .mood-tracker-section .mn-sub,
+  .healthy-lifestyle-section .mn-sub,
+  .wellness-section .mn-sub {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 0 30px 0;
+  }
+
+  .dashboard-header-container {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .dashboard-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .welcome-message {
+    width: 100%;
+    text-align: left;
+    padding: 0 10px;
+  }
+
+  .welcome-message h1 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 0 0 12px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .username {
+    color: #a90707;
+  }
+
+  .greeting-message {
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0 10px;
+  }
+
+  .email-toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+  }
+
+  .user-avatar {
+    flex-shrink: 0;
+  }
+
+  .avatar-image, .avatar-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    background: #a90707;
+    font-size: 1.2rem;
+  }
+
+  .avatar-image {
+    object-fit: cover;
+  }
+
+  .header-divider {
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 20px 0;
+  }
+
+  .affirmation-card {
+    width: 100%;
+    margin: 30px 0;
+    padding: 30px 25px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .affirmation-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .quote-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .quote-title {
+    font-size: 1.2rem;
+    margin: 0 0 12px 0;
+    color: #a90707;
+    font-weight: bold;
+  }
+
+  .quote-text {
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .refresh-quote {
+    align-self: flex-start;
+    padding: 14px 20px;
+    font-size: 1rem;
+    background: transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-card .chart-container {
+    margin: 15px 0 8px 0;
+  }
+
+  .progress-card .card-footer {
+    margin: 0;
+    padding-top: 10px;
+  }
+
+  .progress-section {
+    width: 100%;
+    margin: 35px 0;
+    padding: 0 10px;
+  }
+
+  .mn-head {
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 0 0 15px 0;
+  }
+
+  .progress-section .mn-high {
+    font-size: 2.8rem;
+  }
+
+  .mn-sub {
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0 0 30px 0;
+  }
+
+  .progress-charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
+    align-items: start;
+  }
+
+  .progress-card {
+    width: 100%;
+    padding: 25px 20px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress-card h3 {
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chart-container {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .progress-card svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .progress-card .bar-card-footer {
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    margin-top: -90px;
+    width: 100%;
+  }
+
+  .progress-card .scatter-card-footer {
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    margin-top: -90px;
+    width: 100%;
+  }
+
+  .mood-card, .journal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-card .recharts-surface {
+    width: 100% !important;
+    max-width: 350px !important;
+    height: 300px !important;
+  }
+
+  .journal-card .recharts-surface {
+    width: 100% !important;
+    max-width: 300px;
+  }
+
+  .mood-tracker-section {
+    width: 100%;
+    margin: 35px 0;
+    padding: 0 10px;
+  }
+
+  .mood-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px 0;
+  }
+
+  .mood-option {
+    padding: 14px 24px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mood-option.selected {
+    background: #a90707;
+    color: white;
+    border-color: #a90707;
+  }
+
+  .submit-mood {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    background: #a90707;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+
+  .submit-mood:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .healthy-lifestyle-section {
+    width: 100%;
+    margin: 35px 0;
+    padding: 0 10px;
+  }
+
+  .lifestyle-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
+  }
+
+  .lifestyle-item {
+    width: 100%;
+    padding: 25px 20px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .lifestyle-item img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 12px;
+  }
+
+  .lifestyle-item h3 {
+    font-size: 1.3rem;
+    margin: 0 0 15px 0;
+  }
+
+  .lifestyle-item p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  
+}
+
+
+/* ========== 600px Mobile ========== */
+@media (max-width: 600px) {
+  .dashboard-layout {
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 1;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%) !important;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    width: 270px;
+    padding-top: 75px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
+    background: #a90707;
+    border: 1px solid #a90707;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .sidebar-toggle.open {
+    background-color: #fff;
+    color: #a90707;
+    left: 250px;
+  }
+
+  .sidebar-header {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.6rem;
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-item {
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.05rem;
+  }
+
+  .nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 25px 20px 90px 20px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 0;
+  }
+
+  .mood-tracker-section .mn-head,
+  .healthy-lifestyle-section .mn-head,
+  .wellness-section .mn-head {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 0 0 12px 0;
+  }
+
+  .mood-tracker-section .mn-high,
+  .healthy-lifestyle-section .mn-high,
+  .wellness-section .mn-high {
+    font-size: 2.5rem;
+  }
+
+  .mood-tracker-section .mn-sub,
+  .healthy-lifestyle-section .mn-sub,
+  .wellness-section .mn-sub {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 25px 0;
+  }
+
+  .dashboard-header-container {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .dashboard-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .welcome-message {
+    width: 100%;
+    text-align: left;
+    padding: 0 8px;
+  }
+
+  .welcome-message h1 {
+    font-size: 1.8rem;
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .username {
+    color: #a90707;
+  }
+
+  .greeting-message {
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0 8px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0 8px;
+  }
+
+  .email-toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  .user-avatar {
+    flex-shrink: 0;
+  }
+
+  .avatar-image, .avatar-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    background: #a90707;
+    font-size: 1.1rem;
+  }
+
+  .avatar-image {
+    object-fit: cover;
+  }
+
+  .header-divider {
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 18px 0;
+  }
+
+  .affirmation-card {
+    width: 100%;
+    margin: 25px 0;
+    padding: 25px 20px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .affirmation-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .quote-icon {
+    font-size: 1.7rem;
+    flex-shrink: 0;
+  }
+
+  .quote-title {
+    font-size: 1.15rem;
+    margin: 0 0 10px 0;
+    color: #a90707;
+    font-weight: bold;
+  }
+
+  .quote-text {
+    font-size: 1.05rem;
+    margin: 0;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  .refresh-quote {
+    align-self: flex-start;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-card .chart-container {
+    margin: 12px 0 6px 0;
+  }
+
+  .progress-card .card-footer {
+    margin: 0;
+    padding-top: 8px;
+  }
+
+  .progress-section {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 8px;
+  }
+
+  .mn-head {
+    font-size: 2.2rem;
+    text-align: center;
+    margin: 0 0 12px 0;
+  }
+
+  .progress-section .mn-high {
+    font-size: 2.5rem;
+  }
+
+  .mn-sub {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 25px 0;
+  }
+
+  .progress-charts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .progress-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 25px 20px;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress-card h3 {
+    font-size: 1.2rem;
+    margin: 0 0 18px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chart-container {
+    width: 100%;
+    margin: 18px 0;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .progress-card svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .progress-card .bar-card-footer {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-top: -80px;
+    width: 100%;
+  }
+
+  .progress-card .scatter-card-footer {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-top: -80px;
+    width: 100%;
+  }
+
+  .mood-card, .journal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-card .recharts-surface {
+    width: 100% !important;
+    max-width: 320px !important;
+    height: 280px !important;
+  }
+
+  .journal-card .recharts-surface {
+    width: 100% !important;
+    max-width: 280px;
+  }
+
+  .mood-tracker-section {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 8px;
+  }
+
+  .mood-options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 25px 0;
+  }
+
+  .mood-option {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mood-option.selected {
+    background: #a90707;
+    color: white;
+    border-color: #a90707;
+  }
+
+  .submit-mood {
+    padding: 14px 28px;
+    font-size: 1rem;
+    background: #a90707;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 35px;
+  }
+
+  .submit-mood:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .healthy-lifestyle-section {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 8px;
+  }
+
+  .lifestyle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+  }
+
+  .lifestyle-item {
+    width: 100%;
+    padding: 25px 20px;
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .lifestyle-item img {
+    max-width: 160px;
+    height: auto;
+    margin-bottom: 18px;
+    border-radius: 10px;
+  }
+
+  .lifestyle-item h3 {
+    font-size: 1.2rem;
+    margin: 0 0 12px 0;
+  }
+
+  .lifestyle-item p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+}
+
 /* ========== 480px Mobile ========== */
 @media (max-width: 480px) {
   /* ----------------- Layout ----------------- */
@@ -4641,6 +5537,452 @@ input:checked + .slider:before {
     line-height: 1.4;
     margin: 0;
   }
+}
+
+/* ========== 380px Mobile ========== */
+@media (max-width: 380px) {
+  .dashboard-layout {
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 1;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%) !important;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    width: 260px;
+    padding-top: 70px;
+  }
+
+  .sidebar.active {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
+    background: #a90707;
+    border: 1px solid #a90707;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .sidebar-toggle.open {
+    background-color: #fff;
+    color: #a90707;
+    left: 240px;
+  }
+
+  .sidebar-header {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.3rem;
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav-item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+
+  .main-content {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 15px 10px 80px 10px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 0;
+  }
+
+  .mood-tracker-section .mn-head,
+  .healthy-lifestyle-section .mn-head,
+  .wellness-section .mn-head {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 0 8px 0;
+  }
+
+  .mood-tracker-section .mn-high,
+  .healthy-lifestyle-section .mn-high,
+  .wellness-section .mn-high {
+    font-size: 2rem;
+  }
+
+  .mood-tracker-section .mn-sub,
+  .healthy-lifestyle-section .mn-sub,
+  .wellness-section .mn-sub {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 15px 0;
+  }
+
+  .dashboard-header-container {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .dashboard-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+    padding: 0 3px;
+  }
+
+  .welcome-message {
+    width: 100%;
+    text-align: left;
+    padding: 0 3px;
+  }
+
+  .welcome-message h1 {
+    font-size: 1.3rem;
+    line-height: 1.2;
+    margin: 0 0 6px 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .username {
+    color: #a90707;
+  }
+
+  .greeting-message {
+    font-size: 0.85rem;
+    margin: 0;
+    padding: 0 3px;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0 3px;
+  }
+
+  .email-toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+
+  .user-avatar {
+    flex-shrink: 0;
+  }
+
+  .avatar-image, .avatar-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    background: #a90707;
+    font-size: 0.9rem;
+  }
+
+  .avatar-image {
+    object-fit: cover;
+  }
+
+  .header-divider {
+    width: 100%;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 12px 0;
+  }
+
+  .affirmation-card {
+    width: 100%;
+    margin: 15px 0;
+    padding: 15px 12px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .affirmation-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .quote-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .quote-title {
+    font-size: 1rem;
+    margin: 0 0 6px 0;
+    color: #a90707;
+    font-weight: bold;
+  }
+
+  .quote-text {
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.3;
+    font-style: italic;
+  }
+
+  .refresh-quote {
+    align-self: flex-start;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .progress-card .chart-container {
+    margin: 8px 0 4px 0;
+  }
+
+  .progress-card .card-footer {
+    margin: 0;
+    padding-top: 6px;
+  }
+
+  .progress-section {
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 3px;
+  }
+
+  .mn-head {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 0 8px 0;
+  }
+
+  .progress-section .mn-high {
+    font-size: 2rem;
+  }
+
+  .mn-sub {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 15px 0;
+  }
+
+  .progress-charts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .progress-card {
+    width: 100%;
+    max-width: 340px;
+    padding: 15px 12px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .progress-card h3 {
+    font-size: 1rem;
+    margin: 0 0 12px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chart-container {
+    width: 100%;
+    margin: 12px 0;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .progress-card svg {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .progress-card .bar-card-footer {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-top: -60px;
+    width: 100%;
+  }
+
+  .progress-card .scatter-card-footer {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    margin-top: -60px;
+    width: 100%;
+  }
+
+  .mood-card, .journal-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-card .recharts-surface {
+    width: 100% !important;
+    max-width: 260px !important;
+    height: 220px !important;
+  }
+
+  .journal-card .recharts-surface {
+    width: 100% !important;
+    max-width: 220px;
+  }
+
+  .mood-tracker-section {
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 3px;
+  }
+
+  .mood-options {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 15px 0;
+  }
+
+  .mood-option {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mood-option.selected {
+    background: #a90707;
+    color: white;
+    border-color: #a90707;
+  }
+
+  .submit-mood {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    background: #a90707;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 25px;
+  }
+
+  .submit-mood:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .healthy-lifestyle-section {
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 3px;
+  }
+
+  .lifestyle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .lifestyle-item {
+    width: 100%;
+    padding: 15px 12px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .lifestyle-item img {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 12px;
+    border-radius: 6px;
+  }
+
+  .lifestyle-item h3 {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+  }
+
+  .lifestyle-item p {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    margin: 0;
+  }
+
 }
 
 /* Medium screens (769px and above) */
@@ -5218,6 +6560,198 @@ input:checked + .slider:before {
   padding: 0 10px;
 }
 
+/* ========== 480px Mobile - Wellness Page ========== */
+@media (max-width: 480px) {
+  /* ----------------- Wellness Section Container ----------------- */
+  .wellness-section {
+    width: 100%;
+    margin: 25px 0;
+    padding: 0 5px;
+    box-sizing: border-box;
+  }
+
+  /* ----------------- Section Headings ----------------- */
+  .wellness-section .mn-head {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    word-wrap: break-word;
+  }
+
+  .wellness-section .mn-high {
+    font-size: 2.3rem;
+  }
+
+  .wellness-section .mn-sub {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0 0 25px 0;
+    color: #666;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  /* ----------------- Wellness Content Grid ----------------- */
+  .wellness-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* ----------------- Wellness Items ----------------- */
+  .wellness-item {
+    width: 100%;
+    max-width: 380px;
+    padding: 25px 20px;
+    background: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+  }
+
+  .wellness-item:hover {
+    transform: translateY(-3px);
+     box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2), 
+              0px -6px 10px rgba(0, 0, 0, 0.12), 
+              0px 4px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+
+  .wellness-item:active {
+    transform: translateY(-1px);
+  }
+
+  /* ----------------- Wellness Images ----------------- */
+  .wellness-item img {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 18px;
+    object-fit: cover;
+  }
+
+  /* ----------------- Wellness Text Content ----------------- */
+  .wellness-item h3 {
+    font-size: 1.4rem;
+    margin: 0 0 12px 0;
+    text-align: center;
+    width: 100%;
+    color: #333;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .wellness-item p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #666;
+    text-align: center;
+    width: 100%;
+  }
+
+
+  /* ----------------- Loading State ----------------- */
+  .wellness-section.loading {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* ----------------- Empty State ----------------- */
+  .wellness-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+  }
+
+  .wellness-empty-state h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .wellness-empty-state p {
+    font-size: 1rem;
+  }
+}
+
+/* ========== Additional Mobile Enhancements ========== */
+@media (max-width: 380px) {
+  .wellness-item {
+    padding: 20px 15px;
+    max-width: 340px;
+  }
+
+  .wellness-item img {
+    max-width: 100px;
+    margin-bottom: 15px;
+  }
+
+  .wellness-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .wellness-item p {
+    font-size: 0.88rem;
+  }
+
+  .wellness-section .mn-head {
+    font-size: 1.8rem;
+  }
+
+  .wellness-section .mn-high {
+    font-size: 2.1rem;
+  }
+
+  .wellness-section .mn-sub {
+    font-size: 1rem;
+  }
+}
+
+/* ========== Landscape Orientation Support ========== */
+@media (max-width: 480px) and (orientation: landscape) {
+  .wellness-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .wellness-item {
+    max-width: none;
+    padding: 20px 15px;
+  }
+
+  .wellness-item img {
+    max-width: 80px;
+    margin-bottom: 12px;
+  }
+
+  .wellness-item h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .wellness-item p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+}
+
+/* ========== High DPI Screen Support ========== */
+@media (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+  .wellness-item {
+    border-width: 1px;
+  }
+  
+  .wellness-item img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
 
 /******************************
 
