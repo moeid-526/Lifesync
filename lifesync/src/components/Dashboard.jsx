@@ -32,28 +32,55 @@ import GaugeChart from "react-gauge-chart";
 import "react-circular-progressbar/dist/styles.css";
 import { useActiveTimeTracker } from '../components/useActiveTimeTracker';
 
+// Static fallback data
+const STATIC_METRICS = {
+  chatbotInteractions: 15,
+  lastActive: "Just now",
+  moodTrend: 12.5,
+  journalEntries: 8,
+  weeklyGoals: 3,
+  communityEngagement: 5,
+  chatbotInteractionsPerDay: [
+    { day: "Mon", count: 2 },
+    { day: "Tue", count: 3 },
+    { day: "Wed", count: 4 },
+    { day: "Thu", count: 1 },
+    { day: "Fri", count: 3 },
+    { day: "Sat", count: 1 },
+    { day: "Sun", count: 1 }
+  ],
+  activeTimePerDay: [
+    { day: "Mon", time: 45, minutes: 45 },
+    { day: "Tue", time: 60, minutes: 60 },
+    { day: "Wed", time: 30, minutes: 30 },
+    { day: "Thu", time: 75, minutes: 75 },
+    { day: "Fri", time: 50, minutes: 50 },
+    { day: "Sat", time: 90, minutes: 90 },
+    { day: "Sun", time: 40, minutes: 40 }
+  ],
+  moodData: [
+    { date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), value: 3 },
+    { date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), value: 4 },
+    { date: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000), value: 2 },
+    { date: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000), value: 5 },
+    { date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), value: 4 },
+    { date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), value: 3 },
+    { date: new Date(), value: 4 }
+  ]
+};
+
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const [profilePicture, setProfilePicture] = useState('');
   const [quote, setQuote] = useState("");
-  const [metrics, setMetrics] = useState({
-    chatbotInteractions: 0,
-    lastActive: "Just now",
-    moodTrend: 0,
-    journalEntries: 0,
-    weeklyGoals: 0,
-    communityEngagement: 0,
-    chatbotInteractionsPerDay: [],
-    activeTimePerDay: [],
-    moodData: [],
-  });
+  const [metrics, setMetrics] = useState(STATIC_METRICS);
+  const [usingFallbackData, setUsingFallbackData] = useState(false);
 
   // Add sidebar toggle function
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
-
 
   const [emailNotificationsEnabled, setEmailNotificationsEnabled] = useState(false);
 
@@ -90,8 +117,6 @@ const Dashboard = () => {
     }
   };
 
-
-
   // Add this useEffect to listen for the custom event
   useEffect(() => {
     const handleProfilePictureChange = (event) => {
@@ -104,8 +129,6 @@ const Dashboard = () => {
       window.removeEventListener('profilePictureChanged', handleProfilePictureChange);
     };
   }, []);
-
-
 
   // Add this useEffect hook to the Dashboard component
   useEffect(() => {
@@ -213,14 +236,15 @@ const Dashboard = () => {
         activeTimePerDay: reorderedActiveTimeData,
         lastActive: response.data.lastActive || new Date(),
       });
+      setUsingFallbackData(false);
 
     } catch (error) {
       console.error("Error fetching progress data:", error);
-      toast.error("Failed to load progress data");
-      setMetrics(prev => ({
-        ...prev,
-        journalEntries: prev.journalEntries || 0,
-      }));
+      toast.error("Failed to load progress data. Showing demo data.");
+      
+      // Use static data when server is down
+      setMetrics(STATIC_METRICS);
+      setUsingFallbackData(true);
     }
   };
 
@@ -249,7 +273,8 @@ const Dashboard = () => {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
-        toast.error("Failed to load user data.");
+        toast.error("Failed to load user data. Using demo mode.");
+        setUsingFallbackData(true);
       }
     };
 
@@ -290,7 +315,15 @@ const Dashboard = () => {
       fetchUserProgress(auth.currentUser.uid);
     } catch (error) {
       console.error("Error submitting mood:", error);
-      toast.error("Failed to record mood");
+      toast.error("Failed to record mood. Data saved locally only.");
+      
+      // Update local state even if server is down
+      const newMoodData = [...metrics.moodData, { date: new Date(), value: moodValue }];
+      setMetrics(prev => ({
+        ...prev,
+        moodData: newMoodData,
+        moodTrend: calculateMoodTrend(newMoodData)
+      }));
     }
   };
 
@@ -298,12 +331,9 @@ const Dashboard = () => {
     return <div className="loading-screen">Loading...</div>;
   }
 
-
   if (isFullScreen) {
     return <Outlet />;
   }
-
-
 
   return (
     <>
@@ -368,6 +398,8 @@ const Dashboard = () => {
             <Outlet />
           ) : (
             <>
+              
+
               {/* --- HEADER --- */}
               <motion.div
                 className="dashboard-header-container"
@@ -502,12 +534,11 @@ const Dashboard = () => {
                     </div>
                     <p className="bar-card-footer">
                       {metrics.chatbotInteractions} total interactions
+                      {usingFallbackData && <span className="demo-badge">Demo</span>}
                     </p>
                   </div>
 
-
                   {/* Time Active Per Day - Scatter Chart */}
-
                   <div className="progress-card">
                     <h3>⏱️ Time Active Per Day</h3>
                     <div className="chart-container">
@@ -534,15 +565,12 @@ const Dashboard = () => {
                           shape="circle"
                         />
                       </ScatterChart>
-
-
-
                     </div>
                     <p className="scatter-card-footer">
                       Each point shows minutes spent on the platform
+                      {usingFallbackData && <span className="demo-badge">Demo</span>}
                     </p>
                   </div>
-
 
                   {/* Mood Trend - Gauge Chart */}
                   <div className="progress-card mood-card">
@@ -557,16 +585,14 @@ const Dashboard = () => {
                       needleColor="#2c3e50"
                       textColor="#2c3e50"
                       animate={true}
-                      width={250}  // Set fixed width
-                      height={250} // Set fixed height
+                      width={250}
+                      height={250}
                     />
                     <p className="card-footer mood-footer">
                       {metrics.moodTrend > 0 ? '↑' : '↓'} {Math.abs(metrics.moodTrend).toFixed(1)}%
+                      {usingFallbackData}
                     </p>
                   </div>
-
-
-
 
                   {/* Journal Entries - Radial Bar Chart */}
                   <div className="progress-card journal-card">
@@ -582,11 +608,9 @@ const Dashboard = () => {
                       data={[
                         {
                           name: "Journal Entries",
-                          // Calculate percentage of 1000 entries (max value is 1000)
                           value: Math.min(metrics.journalEntries, 1000),
                           fill: "#a90707",
                         },
-                        // Add a full circle background
                         {
                           name: "Max",
                           value: 100,
@@ -635,13 +659,11 @@ const Dashboard = () => {
                       {metrics.journalEntries >= 100 && (
                         <span className="milestone-badge">Milestone Achieved!</span>
                       )}
+                      {usingFallbackData && <span className="demo-badge">Demo</span>}
                     </p>
                   </div>
-
                 </div>
               </motion.section>
-
-
 
               {/* Mood Tracker Section - Now Functional */}
               <motion.section
@@ -726,8 +748,8 @@ const Dashboard = () => {
               </motion.section>
             </>
           )}
-        </motion.div >
-      </div >
+        </motion.div>
+      </div>
       <ToastContainer />
     </>
   );
