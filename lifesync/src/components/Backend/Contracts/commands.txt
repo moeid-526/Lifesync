@@ -1,0 +1,9 @@
+npx ganache --db ganache-data --chain.chainId 1337 (Backend)
+ npx hardhat run scripts/deploy.js --network ganache (Contracts)
+ cd Lifesync/src/components/Backend
+
+
+
+box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2), 
+              0px -6px 10px rgba(0, 0, 0, 0.12), 
+              0px 4px 8px rgba(0, 0, 0, 0.1);

@@ -1,0 +1,90 @@
+{
+  "address": "0x6Db721B32d5ae530e1D9374b0A4ca6772f888565",
+  "abi": [
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "LogAdded",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "logId",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "userId",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "message",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "addLog",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_userId"
+        },
+        {
+          "type": "string",
+          "name": "_message"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "getLogsByUser",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_userId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string[]",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "logs",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "userId"
+        },
+        {
+          "type": "string",
+          "name": "message"
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp"
+        }
+      ]
+    }
+  ]
+}
