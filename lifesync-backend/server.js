@@ -16,12 +16,14 @@ let client, db, quotesCollection;
 async function connectDB() {
   try {
     if (!client) {
-      client = new MongoClient(mongoURI);
+      client = new MongoClient(mongoURI, {
+        serverApi: { version: '1' },
+        tls: true,
+      });
       await client.connect();
       console.log("✅ MongoDB connected successfully");
     }
 
-    // Make sure db and collection are always set
     if (!db) db = client.db(dbName);
     if (!quotesCollection) quotesCollection = db.collection("Quotes");
 
@@ -31,6 +33,7 @@ async function connectDB() {
     throw error;
   }
 }
+
 
 app.get("/api/get-random-quote", async (req, res) => {
   try {
