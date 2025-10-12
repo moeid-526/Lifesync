@@ -1,17 +1,16 @@
 import express from "express";
 import cors from "cors";
 import { MongoClient, ServerApiVersion } from "mongodb";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// ✅ Use environment variable (from Vercel dashboard)
 const mongoURI = process.env.MONGO_URI;
 const dbName = "LifesyncDB";
 
+// ✅ Create MongoDB client
 const client = new MongoClient(mongoURI, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -20,22 +19,27 @@ const client = new MongoClient(mongoURI, {
   },
 });
 
+// ✅ Connect to MongoDB once (when function is first invoked)
+let db, quotesCollection;
+
 async function connectDB() {
   try {
-    await client.connect();
-    console.log("✅ Connected to MongoDB Atlas successfully");
+    if (!db) {
+      await client.connect();
+      db = client.db(dbName);
+      quotesCollection = db.collection("Quotes");
+      console.log("✅ Connected to MongoDB Atlas successfully");
+    }
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
-    process.exit(1);
   }
 }
 await connectDB();
 
-const db = client.db(dbName);
-const quotesCollection = db.collection("Quotes");
-
-app.get("/get-random-quote", async (req, res) => {
+// ✅ Define API endpoint
+app.get("/api/get-random-quote", async (req, res) => {
   try {
+    await connectDB(); // ensure DB is connected
     const allQuotes = await quotesCollection
       .find({}, { projection: { quote: 1, _id: 0 } })
       .toArray();
@@ -52,7 +56,5 @@ app.get("/get-random-quote", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 5002;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// ✅ Export the app (DO NOT use app.listen)
+export default app;
