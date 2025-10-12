@@ -479,7 +479,7 @@ const fetchRandomQuote = async () => {
                   whileTap={{ scale: 0.95 }}
                   onClick={async () => {
                     try {
-                      const response = await fetch("http://localhost:5002/get-random-quote");
+                      const response = await fetch("https://lifesync-server.vercel.app/api/get-random-quote");
                       if (!response.ok) throw new Error("Network response was not ok");
                       const data = await response.json();
                       setQuote(data.quote);
