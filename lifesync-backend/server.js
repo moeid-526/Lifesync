@@ -1,50 +1,45 @@
+// server.js
 import express from "express";
 import cors from "cors";
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { MongoClient } from "mongodb";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Use environment variable (from Vercel dashboard)
-const mongoURI = process.env.MONGO_URI;
+// ✅ Directly use the working MongoDB URI
+const mongoURI =
+  "mongodb+srv://lifesync_user:-Lonewolf7861-@fyp.g3girma.mongodb.net/?retryWrites=true&w=majority&appName=fyp";
 const dbName = "LifesyncDB";
 
-// ✅ Create MongoDB client
-const client = new MongoClient(mongoURI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
-
-// ✅ Connect to MongoDB once (when function is first invoked)
-let db, quotesCollection;
+// ✅ Create MongoDB client (lazy connection for serverless)
+let client, db, quotesCollection;
 
 async function connectDB() {
   try {
-    if (!db) {
+    if (!client) {
+      client = new MongoClient(mongoURI);
       await client.connect();
       db = client.db(dbName);
       quotesCollection = db.collection("Quotes");
       console.log("✅ Connected to MongoDB Atlas successfully");
     }
+    return { db, quotesCollection };
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
+    throw error; // throw so route will respond 500
   }
 }
-await connectDB();
 
-// ✅ Define API endpoint
+// ✅ API endpoint
 app.get("/api/get-random-quote", async (req, res) => {
   try {
-    await connectDB(); // ensure DB is connected
+    const { quotesCollection } = await connectDB(); // ensure DB is connected
     const allQuotes = await quotesCollection
       .find({}, { projection: { quote: 1, _id: 0 } })
       .toArray();
 
-    if (allQuotes.length === 0) {
+    if (!allQuotes || allQuotes.length === 0) {
       return res.status(404).json({ message: "No quotes found" });
     }
 
@@ -56,5 +51,5 @@ app.get("/api/get-random-quote", async (req, res) => {
   }
 });
 
-// ✅ Export the app (DO NOT use app.listen)
+// ✅ Export the app (Vercel serverless)
 export default app;
