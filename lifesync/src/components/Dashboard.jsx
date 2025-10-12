@@ -278,17 +278,22 @@ const Dashboard = () => {
       }
     };
 
-    const fetchRandomQuote = async () => {
-      try {
-        const response = await fetch("http://localhost:5002/get-random-quote");
-        if (!response.ok) throw new Error("Network response was not ok");
-        const data = await response.json();
-        setQuote(data.quote);
-      } catch (error) {
-        console.error("Error fetching quote:", error);
-        setQuote("Believe in yourself. You are stronger than you think.");
-      }
-    };
+const fetchRandomQuote = async () => {
+  try {
+    const response = await fetch(
+      "https://lifesync-server.vercel.app/api/get-random-quote"
+    );
+    if (!response.ok) throw new Error("Network response was not ok");
+    const data = await response.json();
+    setQuote(data.quote);
+  } catch (error) {
+    console.error("Error fetching quote:", error);
+    setQuote(
+      "Believe in yourself. You are stronger than you think."
+    );
+  }
+};
+
 
     fetchUserData();
     fetchRandomQuote();
