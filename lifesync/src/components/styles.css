@@ -7614,7 +7614,6 @@ input:checked + .slider:before {
   }
 }
 
-
 /* ========== 480px Mobile Chatbot ========== */
 @media (max-width: 480px) {
   /* ----------------- Layout ----------------- */
@@ -7623,12 +7622,43 @@ input:checked + .slider:before {
     position: relative;
     width: 100vw;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-bottom: 120px; /* Add this line - reserve space for fixed input */
   }
 
+  /* ----------------- Main Chat Container ----------------- */
+  .chatbot-container {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 20px 15px 20px 15px; /* Reduced bottom padding since parent has it */
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 0;
+  }
 
+  /* ----------------- Messages Container ----------------- */
+  .chatbot-messages-container {
+    height: calc(100vh - 280px); /* Adjusted height calculation */
+    max-height: calc(100vh - 280px);
+    margin-bottom: 20px;
+  }
 
-  /* ----------------- Sidebar Header Fix ----------------- */
+  /* ----------------- Input Container ----------------- */
+  .chatbot-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    z-index: 100; /* Ensure it stays above other content */
+  }
+
+  /* Rest of your CSS remains exactly the same */
   .sidebar-header {
     padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -7712,24 +7742,11 @@ input:checked + .slider:before {
     font-size: 0.9rem;
   }
 
-  /* ----------------- Main Chat Container ----------------- */
-  .chatbot-container {
-    width: 100%;
-    max-width: 100vw;
-    margin: 0;
-    padding: 20px 15px 100px 15px;
-    box-sizing: border-box;
-    position: relative;
-    margin-left: 0;
-    margin-top: 0;
-  }
-
   /* ----------------- Chatbot Header ----------------- */
   .chatbot-header {
     width: 100%;
     margin-bottom: 20px;
     text-align: center;
-     padding-top: 0; 
   }
 
   .chatbot-header .mn-head {
@@ -7746,13 +7763,6 @@ input:checked + .slider:before {
     font-size: 1.1rem;
     text-align: center;
     margin: 0 0 20px 0;
-  }
-
-  /* ----------------- Messages Container ----------------- */
-  .chatbot-messages-container {
-    height: 50vh;
-    max-height: 50vh;
-    margin-bottom: 20px;
   }
 
   .chatbot-messages {
@@ -7775,24 +7785,9 @@ input:checked + .slider:before {
     margin-right: auto;
   }
 
-  /* ----------------- Input Container ----------------- */
-  .chatbot-input-container {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 15px;
-    border-top: 1px solid #e0e0e0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
   .facial-analysis-area {
     position: relative;
     width: 100%;
-    
   }
 
   .facial-analysis-btn {
@@ -7807,10 +7802,7 @@ input:checked + .slider:before {
     justify-content: center;
     gap: 8px;
     font-size: 0.9rem;
-    
   }
-
-
 
   /* ----------------- Image Preview & Camera ----------------- */
   .image-preview-overlay {
