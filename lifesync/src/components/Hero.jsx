@@ -88,7 +88,7 @@ const Hero = () => {
 
         <div className="hero-content">
           <h1 className="hero-heading">
-            Nasir Sharif is Healing <span className="highlight">from Within</span>
+            Healing <span className="highlight">from Within</span>
           </h1>
           <p className="hero-subheading">
             LifeSync believes in the power of inner healing. Our holistic approach combines 
