@@ -7623,6 +7623,7 @@ input:checked + .slider:before {
     position: relative;
     width: 100vw;
     overflow-x: hidden;
+    padding-top: 60px;
   }
 
 
@@ -7720,6 +7721,7 @@ input:checked + .slider:before {
     box-sizing: border-box;
     position: relative;
     margin-left: 0;
+    margin-top: 0;
   }
 
   /* ----------------- Chatbot Header ----------------- */
@@ -7727,6 +7729,7 @@ input:checked + .slider:before {
     width: 100%;
     margin-bottom: 20px;
     text-align: center;
+     padding-top: 0; 
   }
 
   .chatbot-header .mn-head {
