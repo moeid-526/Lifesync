@@ -7615,6 +7615,328 @@ input:checked + .slider:before {
 }
 
 
+/* ========== 480px Mobile Chatbot ========== */
+@media (max-width: 480px) {
+  /* ----------------- Layout ----------------- */
+  .dashboard-layout-chatbot {
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    overflow-x: hidden;
+  }
+
+
+
+  /* ----------------- Sidebar Header Fix ----------------- */
+  .sidebar-header {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.5rem;
+    color: white;
+    margin: 0;
+    text-align: center;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+  }
+
+  .nav-item-chatbot {
+    padding: 12px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .nav-item-chatbot:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-item-chatbot.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+  }
+
+  .new-chat-button {
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+  }
+
+  .toggle-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .previous-chats-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .chat-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px !important;
+  }
+
+  .chat-entry-content {
+    flex: 1;
+    cursor: pointer;
+  }
+
+  .delete-chat-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.9rem;
+  }
+
+  /* ----------------- Main Chat Container ----------------- */
+  .chatbot-container {
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    padding: 20px 15px 100px 15px;
+    box-sizing: border-box;
+    position: relative;
+    margin-left: 0;
+  }
+
+  /* ----------------- Chatbot Header ----------------- */
+  .chatbot-header {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .chatbot-header .mn-head {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0 0 10px 0;
+  }
+
+  .chatbot-header .mn-high {
+    font-size: 2.3rem;
+  }
+
+  .chatbot-header .mn-sub {
+    font-size: 1.1rem;
+    text-align: center;
+    margin: 0 0 20px 0;
+  }
+
+  /* ----------------- Messages Container ----------------- */
+  .chatbot-messages-container {
+    height: 50vh;
+    max-height: 50vh;
+    margin-bottom: 20px;
+  }
+
+  .chatbot-messages {
+    padding: 15px;
+  }
+
+  .chatbot-message {
+    max-width: 85%;
+    padding: 12px 15px;
+    margin: 8px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .chatbot-message.user {
+    margin-left: auto;
+  }
+
+  .chatbot-message.bot {
+    margin-right: auto;
+  }
+
+  /* ----------------- Input Container ----------------- */
+  .chatbot-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .facial-analysis-area {
+    position: relative;
+    width: 100%;
+    
+  }
+
+  .facial-analysis-btn {
+    width: 100%;
+    padding: 12px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    
+  }
+
+
+
+  /* ----------------- Image Preview & Camera ----------------- */
+  .image-preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+  }
+
+  .image-preview-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 2001;
+    width: 90%;
+    max-width: 350px;
+    text-align: center;
+  }
+
+  .image-preview {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .close-camera-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #666;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 2002;
+  }
+
+  .camera-video {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  .bot-btn-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .bot-image-btn {
+    padding: 10px 15px;
+    border: 1px solid #a90707;
+    background: white;
+    color: #a90707;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+
+  .bot-image-btn:first-child {
+    background: #a90707;
+    color: white;
+  }
+
+  /* ----------------- Input Field & Button ----------------- */
+  .chatbot-input-container input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    order: 1;
+  }
+
+  .chatbot-input-container button:not(.facial-analysis-btn):not(.bot-image-btn) {
+    padding: 12px 20px;
+    background: #a90707;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    order: 2;
+  }
+
+  .chatbot-input-container button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .viewing-chat-message {
+    text-align: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  /* ----------------- Loading Dots ----------------- */
+  .loading-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .loading-dots div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a90707;
+    animation: loading-bounce 1.4s ease-in-out infinite both;
+  }
+
+  .loading-dots div:nth-child(1) { animation-delay: -0.32s; }
+  .loading-dots div:nth-child(2) { animation-delay: -0.16s; }
+
+  @keyframes loading-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+}
+
 /******************************
 
        Journal Styles
