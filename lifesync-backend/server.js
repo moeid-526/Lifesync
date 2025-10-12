@@ -1,4 +1,3 @@
-// server.js
 import express from "express";
 import cors from "cors";
 import { MongoClient } from "mongodb";
@@ -7,12 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ✅ Directly use the working MongoDB URI
+// Directly use working MongoDB URI
 const mongoURI =
   "mongodb+srv://lifesync_user:-Lonewolf7861-@fyp.g3girma.mongodb.net/?retryWrites=true&w=majority&appName=fyp";
 const dbName = "LifesyncDB";
 
-// ✅ Create MongoDB client (lazy connection for serverless)
 let client, db, quotesCollection;
 
 async function connectDB() {
@@ -20,21 +18,23 @@ async function connectDB() {
     if (!client) {
       client = new MongoClient(mongoURI);
       await client.connect();
-      db = client.db(dbName);
-      quotesCollection = db.collection("Quotes");
-      console.log("✅ Connected to MongoDB Atlas successfully");
+      console.log("✅ MongoDB connected successfully");
     }
+
+    // Make sure db and collection are always set
+    if (!db) db = client.db(dbName);
+    if (!quotesCollection) quotesCollection = db.collection("Quotes");
+
     return { db, quotesCollection };
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
-    throw error; // throw so route will respond 500
+    throw error;
   }
 }
 
-// ✅ API endpoint
 app.get("/api/get-random-quote", async (req, res) => {
   try {
-    const { quotesCollection } = await connectDB(); // ensure DB is connected
+    const { quotesCollection } = await connectDB();
     const allQuotes = await quotesCollection
       .find({}, { projection: { quote: 1, _id: 0 } })
       .toArray();
@@ -51,5 +51,4 @@ app.get("/api/get-random-quote", async (req, res) => {
   }
 });
 
-// ✅ Export the app (Vercel serverless)
 export default app;
