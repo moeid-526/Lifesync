@@ -1,9 +1,11 @@
-npx ganache --db ganache-data --chain.chainId 1337 (Backend)
- npx hardhat run scripts/deploy.js --network ganache (Contracts)
+npx ganache --db ganache-data --chain.chainId 1337 
+(Backend)
+ npx hardhat run scripts/deploy.js --network ganache 
+ (Contracts)
  cd Lifesync/src/components/Backend
 
 git add .
-git commit -m "Your commit message"
+git commit -m "Adjusted Chatbot Page For Mobile Screens"
 git push
 
 

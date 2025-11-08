@@ -241,68 +241,58 @@ const Dashboard = () => {
     } catch (error) {
       console.error("Error fetching progress data:", error);
       toast.error("Failed to load progress data. Showing demo data.");
-
+      
       // Use static data when server is down
       setMetrics(STATIC_METRICS);
       setUsingFallbackData(true);
     }
   };
 
-useEffect(() => {
-  const fetchUserData = async () => {
-    try {
-      const user = auth.currentUser;
-      if (!user) {
-        toast.error("User not logged in. Redirecting to login.");
-        setTimeout(() => navigate("/login"), 2000);
-        return;
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          toast.error("User not logged in. Redirecting to login.");
+          setTimeout(() => navigate("/login"), 2000);
+          return;
+        }
+
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          setUserData(data);
+          await fetchProfilePicture(user.email);
+          await fetchUserProgress(user.uid);
+
+          // Fetch email preference
+          const emailPref = await fetchEmailPreference(user.uid);
+          setEmailNotificationsEnabled(emailPref);
+        } else {
+          toast.error("User data not found.");
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        toast.error("Failed to load user data. Using demo mode.");
+        setUsingFallbackData(true);
       }
+    };
 
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      if (userDoc.exists()) {
-        const data = userDoc.data();
-        setUserData(data);
-        await fetchProfilePicture(user.email);
-        await fetchUserProgress(user.uid);
-
-        // Fetch email preference
-        const emailPref = await fetchEmailPreference(user.uid);
-        setEmailNotificationsEnabled(emailPref);
-      } else {
-        toast.error("User data not found.");
+    const fetchRandomQuote = async () => {
+      try {
+        const response = await fetch("http://localhost:5002/get-random-quote");
+        if (!response.ok) throw new Error("Network response was not ok");
+        const data = await response.json();
+        setQuote(data.quote);
+      } catch (error) {
+        console.error("Error fetching quote:", error);
+        setQuote("Believe in yourself. You are stronger than you think.");
       }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      toast.error("Failed to load user data. Using demo mode.");
-      setUsingFallbackData(true);
-    }
-  };
+    };
 
-  const fetchRandomQuote = async () => {
-    try {
-      const response = await fetch(
-        "https://lifesync-server.vercel.app/api/get-random-quote"
-      );
-      if (!response.ok) throw new Error("Network response was not ok");
-      const data = await response.json();
-      setQuote(data.quote);
-    } catch (error) {
-      console.error("Error fetching quote:", error);
-      setQuote(
-        "Believe in yourself. You are stronger than you think."
-      );
-    }
-  };
-
-  fetchUserData();
-  fetchRandomQuote();
-
-  // ✅ Auto-refresh quote every 10 seconds
-  const interval = setInterval(fetchRandomQuote, 10000);
-
-  return () => clearInterval(interval); // cleanup on unmount
-}, [navigate]);
-
+    fetchUserData();
+    fetchRandomQuote();
+  }, [navigate]);
 
   const handleMoodSubmit = async () => {
     if (!currentMood || !auth.currentUser) return;
@@ -326,7 +316,7 @@ useEffect(() => {
     } catch (error) {
       console.error("Error submitting mood:", error);
       toast.error("Failed to record mood. Data saved locally only.");
-
+      
       // Update local state even if server is down
       const newMoodData = [...metrics.moodData, { date: new Date(), value: moodValue }];
       setMetrics(prev => ({
@@ -408,7 +398,7 @@ useEffect(() => {
             <Outlet />
           ) : (
             <>
-
+              
 
               {/* --- HEADER --- */}
               <motion.div
@@ -484,7 +474,7 @@ useEffect(() => {
                   whileTap={{ scale: 0.95 }}
                   onClick={async () => {
                     try {
-                      const response = await fetch("https://lifesync-server.vercel.app/api/get-random-quote");
+                      const response = await fetch("http://localhost:5002/get-random-quote");
                       if (!response.ok) throw new Error("Network response was not ok");
                       const data = await response.json();
                       setQuote(data.quote);
