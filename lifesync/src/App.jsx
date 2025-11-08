@@ -21,6 +21,7 @@ import Feedback from './components/Feedback';
 import TimeCapsule from './components/timeCapsule/TimeCapsule';
 import Logs from './components/Blockchain/Logs';
 import Report from './components/reportGeneration/Report';
+import Consult from './components/Consultation/Consult';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { auth } from './firebaseConfig';
@@ -174,6 +175,7 @@ function MainApp() {
           <Route path="timecapsule" element={<TimeCapsule />} />
           <Route path="systemlogs" element={<Logs />} />
           <Route path="report" element={<Report />} />
+          <Route path="consult" element={<Consult />} />
           <Route path="lifesync-chatbot" element={<LifesyncChatbot />} />
         </Route>
       </Routes>

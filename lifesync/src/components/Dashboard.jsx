@@ -162,7 +162,7 @@ const Dashboard = () => {
     location.pathname === "/dashboard/profile" ||
     location.pathname === "/dashboard/wellness";
 
-  const fullScreenRoutes = ["/dashboard/chatbot", "/dashboard/journal", "/dashboard/timecapsule", "/dashboard/systemlogs", "/dashboard/report"];
+  const fullScreenRoutes = ["/dashboard/chatbot", "/dashboard/journal", "/dashboard/timecapsule", "/dashboard/systemlogs", "/dashboard/report", "/dashboard/consult"];
   const isFullScreen = fullScreenRoutes.includes(location.pathname);
 
   const calculateMoodTrend = (moodData) => {

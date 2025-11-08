@@ -8900,3 +8900,110 @@ input:checked + .slider:before {
   border-radius: 6px;
 }
 
+
+
+
+/* CONSULTATION PAGE*/
+
+/* ===== CONSULTATION PAGE ===== */
+
+/* Container */
+.consult-container {
+  
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  
+}
+
+/* Card */
+.consult-card {
+ 
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 700px;
+  
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+
+/* Form */
+.consult-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.consult-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.consult-form input,
+.consult-form select,
+.consult-form textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background-color: #fff;
+}
+
+.consult-form input:focus,
+.consult-form select:focus,
+.consult-form textarea:focus {
+  border-color: #1e3a8a; /* Focus color consistent with theme */
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+}
+
+/* Buttons */
+.search-btn,
+.submit-btn {
+  width: 100%;
+  background-color: #a90707; /* LifeSync red for main action */
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.search-btn:hover:not(:disabled),
+.submit-btn:hover {
+  background-color: #e30c0c;
+  transform: scale(1.03);
+}
+
+.search-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Doctor List */
+.doctor-list {
+  margin-top: 1rem;
+}
+
+.doctor-list label {
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.doctor-list ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  color: #1f2937;
+}
+
+.doctor-list li {
+  padding: 0.3rem 0;
+}

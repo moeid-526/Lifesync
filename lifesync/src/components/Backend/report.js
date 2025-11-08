@@ -19,6 +19,7 @@ const serviceAccount = JSON.parse(await readFile(serviceAccountPath));
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 });
+console.log("✅ Firebase Admin initialized with project:", serviceAccount.project_id);
 
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(bodyParser.json());

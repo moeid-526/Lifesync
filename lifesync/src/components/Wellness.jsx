@@ -6,6 +6,7 @@ import journalImg from "../assets/journal-keeping.png";
 import reportGenImg from "../assets/reportGen.png";
 import timeCapImg from "../assets/timeCap.png";
 import blockchainImg from "../assets/blockchain.png"
+import consultImg from "../assets/consult.png"
 import './styles.css';
 
 const Wellness = () => {
@@ -56,7 +57,13 @@ const Wellness = () => {
             title: "System Logs",
             desc: "View tamper-proof logs powered by blockchain to ensure privacy and transparency.",
             route: "/dashboard/systemlogs", // Suggested route
-          },          
+          },       
+          {
+            img: consultImg,
+            title: "Consult With Psychologists",
+            desc: "You can consult with doctors and book online sessions or appointments",
+            route: "/dashboard/consult", // Suggested route
+          },   
         ].map((item, index) => (
           <motion.div
             key={index}
